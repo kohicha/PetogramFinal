@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Registration | PetoGram</title>
+    <title>Shelter Registration | PetoGram</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,43 +24,76 @@
 
         <main class="flex-1 p-8">
             <div class="max-w-2xl mx-auto">
-                <h1 class="text-3xl font-bold text-gray-900 mb-6">Expert Registration</h1>
+                <h1 class="text-3xl font-bold text-gray-900 mb-6">Shelter Registration</h1>
                 <div class="bg-white shadow-md rounded-lg p-6">
-                    <form action="/expert-registration" method="POST" enctype="multipart/form-data" class="space-y-6">
-                        <div>
-                            <label for="expertise" class="block text-sm font-medium text-gray-700">Expertise</label>
-                            <select id="expertise" name="expertise" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand focus:border-brand rounded-md shadow-sm">
-                                <option value="">Select your expertise</option>
-                                <option value="veterinarian">Veterinarian</option>
-                                <option value="animal_behaviorist">Animal Behaviorist</option>
-                                <option value="animal_nutritionist">Animal Nutritionist</option>
-                                <option value="animal_trainer">Animal Trainer</option>
-                            </select>
+                    <form action="/shelter-registration" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="shelter_license" class="block text-sm font-medium text-gray-700">Shelter License</label>
+                                <input type="text" id="shelter_license" name="shelter_license" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+
+                            <div>
+                                <label for="shelter_registration" class="block text-sm font-medium text-gray-700">Shelter Registration</label>
+                                <input type="text" id="shelter_registration" name="shelter_registration" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
                         </div>
 
                         <div>
-                            <label for="professional_license" class="block text-sm font-medium text-gray-700">Professional License</label>
-                            <input type="text" id="professional_license" name="professional_license" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <label for="owner" class="block text-sm font-medium text-gray-700">Owner</label>
+                            <input type="text" id="owner" name="owner" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div>
-                            <label for="proof_of_employment" class="block text-sm font-medium text-gray-700">Proof of Employment</label>
-                            <input type="file" id="proof_of_employment" name="proof_of_employment" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Shelter Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div>
-                            <label for="proof_of_education" class="block text-sm font-medium text-gray-700">Proof of Education</label>
-                            <input type="file" id="proof_of_education" name="proof_of_education" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <label for="location" class="block text-sm font-medium text-gray-700">Google Maps Link</label>
+                            <input type="text" id="location" name="google_maps_link" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text" id="location" name="address" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div>
-                            <label for="social_media" class="block text-sm font-medium text-gray-700">Social Media</label>
-                            <input type="text" id="social_media" name="social_media" class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea id="description" name="description" rows="3" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" name="email" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="tel" id="phone" name="phone" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="website" class="block text-sm font-medium text-gray-700">Website</label>
+                            <input type="url" id="website" name="website" class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="open_hours" class="block text-sm font-medium text-gray-700">Open Hours</label>
+                                <input type="time" id="open_hours" name="open_hours" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                            <div>
+                                <label for="close_hours" class="block text-sm font-medium text-gray-700">Close Hours</label>
+                                <input type="time" id="close_hours" name="close_hours" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
                         </div>
 
                         <div>
                             <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand">
-                                Register as Expert
+                                Register Shelter
                             </button>
                         </div>
                     </form>

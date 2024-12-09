@@ -65,9 +65,30 @@ const addToFavorite = async (req, res) => {
     res.status(500).json({ error: 'Failed to add favorite' });
   }
 }
+
+const modifyUserRole = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const { newRole, expertise, accessType } = req.body;
+
+    const updatedUser = await userModel.updateUserRole(userId, newRole);
+
+    if (newRole === 'expert') {
+      await userModel.addUserToExpert(userId, expertise);
+    } else if (newRole === 'administrator') {
+      await userModel.addUserToAdmin(userId, accessType);
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error('Error modifying user role:', error);
+    res.status(500).json({ error: 'Failed to modify user role' });
+  }
+};
 export default {
   getUsers,
   getUser,
+  modifyUserRole,
   getUserByUsername,
   getUserByEmail,
   addToFavorite

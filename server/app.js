@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
     const postPromises = posts.map(async (post) => { 
       const getAuthor = await fetch(`http://localhost:3000/api/users/${post.user_id}`);
       const author = await getAuthor.json();
-      return { ...post, username: author.username }; 
+      return { ...post, username: author.username, role: author.role}; 
     });
 
     const updatedPosts = await Promise.all(postPromises); 
@@ -77,14 +77,6 @@ app.get('/post/:post_id', async(req, res) => {
   }
 })
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(err.status || 500).render('error', { error: err }); // Render an error page
-});
-
-app.use((req, res) => {
-  res.status(404).render('404', {page:'404'}); // Render a 404 page
-});
 
 app.get('/ask', ensureAuthenticated,(req, res)=>{
   res.render('question', { page: 'ask'})
@@ -106,8 +98,12 @@ app.get('/shelters/shelter', (req, res) => {
   res.render('shelter', { page: 'shelters' })
 })
 
-app.get('/shelters/shelter-registration', ensureAuthenticated,(req, res) => {
+app.get('/shelters/shelter-registration', (req, res) => {
   res.render('shelter-registration', { page: 'shelters' })
+})
+
+app.get('/profile/expert-registration', (req, res) => {
+  res.render('expert-registration', { page: 'settings' })
 })
 
 app.get('/verify', (req, res) => {
@@ -126,8 +122,16 @@ app.get('/profile/settings', ensureAuthenticated,(req, res) => {
   res.render('profile-settings', { page: 'settings' })
 })
 
-app.get('/profile/expert-registration', ensureAuthenticated,(req, res) => {
-  res.render('expert-registration', { page: 'settings' })
+
+app.get('/admin', async (req, res) => {
+  try {
+    const getUsers = await fetch('http://localhost:3000/api/users')
+    const users = await getUsers.json()
+    console.log(users)
+    res.render('superuser', { page: 'settings', users})
+  } catch(error){
+    console.log(error)
+  }
 })
 
 app.get('/profile/:username', async(req,res) => {
@@ -146,13 +150,21 @@ app.get('/profile/:username', async(req,res) => {
 
 
 
-app.get('/admin/shelter-verification', async(req,res) => {
+app.get('/admin/shelter-verification', checkRole('administrator'),async(req,res) => {
   res.render('shelter-admin', {shelters : []})
 })
 
-app.get('/admin/expert-verification', async(req,res) => {
+app.get('/admin/expert-verification', checkRole('administrator'),async(req,res) => {
   res.render('expert-admin', {experts : []})
 })
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).render('error', { error: err , page:'err`'}); // Render an error page
+});
+
+app.use((req, res) => {
+  res.status(404).render('404', {page:'404'}); // Render a 404 page
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 })
