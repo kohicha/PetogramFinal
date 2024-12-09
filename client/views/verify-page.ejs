@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetoGram - Become a Verified Professional</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <main class="min-h-screen">
+        <!-- Hero Section -->
+        <div class="relative h-[500px] overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-500/90 to-orange-600/90 z-10"></div>
+            <img 
+                src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg" 
+                alt="Professional Pet Care" 
+                class="w-full h-screen object-cover"
+            >
+            <div class="absolute inset-0 flex flex-col justify-center px-12 z-20 max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold text-white mb-4">
+                    Join us as an expert in pet-care
+                </h1>
+                <p class="text-2xl text-white/90 mb-8">
+                    where compassion meets excellence!
+                </p>
+                <a 
+                    href="#verify-form" 
+                    class="inline-flex items-center gap-2 bg-white text-orange-500 px-6 py-3 rounded-lg font-medium w-fit hover:bg-orange-50 transition-colors"
+                >
+                    Verify Now!
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="flex items-start gap-12 mb-12">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-2">
+                        Become a verified
+                        <span class="text-orange-500">Pawfessional</span>
+                        in our community!
+                    </h2>
+                    <p class="text-gray-600">
+                        Connect with fellow pet parents, access expert knowledge, and discover valuable resources to enhance your pet's life. Become a part of our growing community and experience the difference. Share your pet's cutest moments, ask questions, find local pet services, and participate in fun challenges.
+                    </p>
+                </div>
+            </div>
+            <!-- Verification Form -->
+            <form id="verify-form" class="bg-white p-8 rounded-xl border border-gray-200 mb-12 shadow-sm">
+                <h3 class="text-xl font-bold mb-6">Professional Information</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block font-medium mb-2">
+                            Professional Title <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            placeholder="e.g. Veterinarian, Dog Trainer, Pet Groomer"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block font-medium mb-2">
+                            License/Certification Number <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your professional license or certification number"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block font-medium mb-2">
+                            Years of Experience <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            min="0"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block font-medium mb-2">
+                            Upload Credentials <span class="text-red-500">*</span>
+                        </label>
+                        <div class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center">
+                            <div class="mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-600 mb-2">Drag and drop your files here, or click to browse</p>
+                            <p class="text-sm text-gray-500">Supported formats: PDF, JPG, PNG (Max 10MB)</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600 transition-colors">
+                        Submit for Verification
+                    </button>
+                </div>
+            </form>
+
+            <!-- FAQ Section -->
+            <section>
+                <h3 class="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+                <div class="space-y-4">
+                    <% const faqs = [
+                        {
+                            question: "What is PetoGram?",
+                            answer: "PetoGram is a community platform for pet lovers, owners, and professionals to connect, share experiences, and access expert knowledge about pet care."
+                        },
+                        {
+                            question: "How do I verify my professional status?",
+                            answer: "Fill out the verification form above with your professional details and upload relevant credentials. Our team will review your application within 2-3 business days."
+                        },
+                        {
+                            question: "What's the differences between a non-verified user and verified user?",
+                            answer: "Verified users get a special badge, can post expert advice, access exclusive features, and are featured in our professional directory."
+                        },
+                        {
+                            question: "What are the benefits of applying?",
+                            answer: "Benefits include increased visibility, trust from the community, access to professional networking, and the ability to offer services through our platform."
+                        },
+                        {
+                            question: "I am unable to verify my status",
+                            answer: "If you're having trouble with verification, please contact our support team at support@petogram.com for assistance."
+                        }
+                    ] %>
+
+                    <% faqs.forEach(faq => { %>
+                    <div class="border border-gray-200 rounded-lg">
+                        <button class="flex items-center justify-between w-full px-6 py-4 text-left">
+                            <span class="font-medium"><%= faq.question %></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="px-6 pb-4 text-gray-600">
+                            <%= faq.answer %>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

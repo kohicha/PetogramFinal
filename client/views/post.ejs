@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetoGram - Tongue-Tied Tuesday</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <%- include('partials/sidebar') %>
+    
+    <main class="ml-64 mr-80 px-8 py-6">
+        <div class="mb-6">
+            <div class="flex items-center gap-3 mb-2">
+                <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=Felix" alt="User Avatar" class="w-8 h-8 rounded-full">
+                <span class="font-medium"><%= author.username%></span>
+                <% if(author.role === 'expert'){ %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <% } %>
+            </div>
+            
+            <h1 class="text-2xl font-bold mb-4"><%= post.title %></h1>
+            
+            <div class="flex items-center gap-6 text-sm text-gray-600 mb-4">
+                <span>Asked 2 days ago</span>
+                <span>1.2k Votes</span>
+                <span>900 Comments</span>
+                <span>5.2k Views</span>
+           </div>
+
+            <p class="text-gray-600 mb-4"><%= post.body%></p>
+        </div>
+<!-- User Interaction Buttons -->
+            <div class="flex items-center justify-between  border-gray-200 pt-4 pb-8 mt-6">
+              <div class="flex items-center space-x-4">
+                <!-- Upvote Button -->
+                <button class="flex items-center space-x-1 text-gray-500 hover:text-orange-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                  </svg>
+                  <span class="font-medium">Upvote</span>
+                </button>
+                <!-- Downvote Button -->
+                <button class="flex items-center space-x-1 text-gray-500 hover:text-orange-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                  <span class="font-medium">Downvote</span>
+                </button>
+              </div>
+              <!-- Save Button -->
+              <% if (user){ %>
+              <button data-post-id="<%= post.post_id %>" id="savePostButton" class="flex items-center space-x-1 text-gray-500 hover:text-orange-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+                <span class="font-medium">Save</span>
+              </button>
+              <% } else { %>
+              <a href="/login" class="flex items-center space-x-1 text-gray-500 hover:text-orange-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+                <span class="font-medium">Save</span>
+              </a>
+              <%}%>
+            </div>
+        <div class="mb-6 ">
+            <div class="pb-6 flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold">138 Comments</h2>
+                <select class="px-3 py-2 border border-gray-200 rounded-lg text-sm">
+                    <option>Highest Upvotes</option>
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                </select>
+            </div>
+
+            <!-- Comment -->
+            <div class="border-t border-gray-200 py-6">
+                <div class="flex gap-4">
+                    <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=Felix" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-medium">Syd pogi</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-gray-500">answered Dec 24, 2024 at 21:01</span>
+                        </div>
+                        <p class="text-gray-600 mb-2">Oh my gosh, that's hilarious! My dog does the same thing. I think they're just trying to show off their tongue tricks. 😄</p>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-1">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <span>12</span>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <button class="text-gray-500 hover:text-gray-700 text-sm">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reply Form -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <div class="flex items-center gap-1 border-b border-gray-200 p-2 bg-white">
+                <button class="p-2 hover:bg-gray-100 rounded" title="Bold">B</button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="Italic">I</button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="Heading">H</button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="Quote">"</button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="Link">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="Image">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <button class="p-2 hover:bg-gray-100 rounded" title="List">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            <textarea 
+                rows="4" 
+                placeholder="Write your answer here"
+                class="w-full p-4 focus:outline-none"
+            ></textarea>
+        </div>
+        <button class="mt-4 px-6 py-2 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600">
+            Post Answer
+        </button>
+    </main>
+    
+    <%- include('partials/hot-topics') %>
+</body>
+<script src="/js/post.js"></script>
+</html>
