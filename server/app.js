@@ -77,6 +77,15 @@ app.get('/post/:post_id', async(req, res) => {
   }
 })
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).render('error', { error: err }); // Render an error page
+});
+
+app.use((req, res) => {
+  res.status(404).render('404', {page:'404'}); // Render a 404 page
+});
+
 app.get('/ask', ensureAuthenticated,(req, res)=>{
   res.render('question', { page: 'ask'})
 })
