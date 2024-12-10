@@ -61,6 +61,22 @@ app.get('/', async (req, res) => {
     res.status(500).render('error', { error: 'Failed to fetch posts' });
   }
 });
+app.get('/favorites', ensureAuthenticated,async (req, res) => {
+  try{
+    const user_id = req.user.user_id
+    const getFavorites = await fetch(`http://localhost:3000/api/${user_id}/favorites`)
+    const favorites = await getFavorites.json();
+    const postPromises = favorites.map(async (favorite) => { 
+      const getAuthor = await fetch(`http://localhost:3000/api/users/${favorite.user_id}`);
+      const author = await getAuthor.json();
+      return { ...favorite, username: author.username, role: author.role}; 
+    });
+    const updatedPosts = await Promise.all(postPromises); 
+    res.render('favorites', { page: 'favorites', favorites: updatedPosts})
+  } catch(error){
+    console.log(error)
+  }
+})
 
 app.get('/post/:post_id', async(req, res) => {
   try{
@@ -110,9 +126,6 @@ app.get('/verify', (req, res) => {
   res.render('verify-page', {page: 'verify'})
 })
 
-app.get('/favorites', (req, res) => {
-  res.render('favorites', { page: 'favorites' })
-})
 
 app.get('/community', (req, res) => {
   res.render('community', { page: 'community' })
@@ -151,7 +164,16 @@ app.get('/profile/:username', async(req,res) => {
 
 
 app.get('/admin/shelter-verification', checkRole('administrator'),async(req,res) => {
-  res.render('shelter-admin', {shelters : []})
+  try{
+    const pendingShelters = await fetch("http://localhost:3000/pending")
+    const shelters = await pendingShelters.json()
+
+    console.log(shelters)
+    res.render('shelter-admin', {shelters})
+  }catch (error){
+    console.log(error)
+    res.status(500)
+  } 
 })
 
 app.get('/admin/expert-verification', checkRole('administrator'),async(req,res) => {

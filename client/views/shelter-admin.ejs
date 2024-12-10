@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelter Verification | PetoGram</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -50,16 +49,16 @@
                                                     <img class="h-10 w-10 rounded-full" src="/placeholder.svg?height=40&width=40" alt="">
                                                 </div>
                                                 <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900"><%= shelter.shelter_name %></div>
+                                                    <div class="text-sm font-medium text-gray-900"><%= shelter.name %></div>
                                                     <div class="text-sm text-gray-500"><%= shelter.website %></div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><%= shelter.owner_name %></div>
+                                            <div class="text-sm text-gray-900"><%= shelter.owner %></div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900"><%= shelter.location %></div>
+                                            <div class="text-sm text-gray-900"><%= shelter.address %></div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900"><%= shelter.email %></div>
@@ -70,13 +69,13 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <button 
-                                                @click="openModal('accept', '<%= shelter.shelter_id %>')"
+                                            onclick="acceptShelterRegistration('<%= shelter.shelter_form_id %>')"
                                                 class="text-brand hover:text-brand-dark mr-2"
                                             >
                                                 Accept
                                             </button>
                                             <button 
-                                                @click="openModal('reject', '<%= shelter.shelter_id %>')"
+                                              onclick="rejectShelterRegistration('<%= shelter.shelter_form_id %>')"
                                                 class="text-red-600 hover:text-red-900"
                                             >
                                                 Reject
@@ -165,19 +164,37 @@
             this.shelterId = shelterId;
             this.reason = '';
         }
+        async function submitAction() {
+  if (this.action === 'reject' && !this.reason.trim()) {
+    alert('Please provide a reason for rejection.');
+    return;
+  }
 
-        function submitAction() {
-            if (this.action === 'reject' && !this.reason.trim()) {
-                alert('Please provide a reason for rejection.');
-                return;
-            }
+  try {
+    const response = await fetch(`/${this.shelterId}/accept`, {  // Replace with your actual endpoint
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // ... any authentication headers if needed
+      },
+      body: JSON.stringify({ action: this.action, reason: this.reason })
+    });
 
-            // Here you would typically send an AJAX request to your server
-            console.log(`${this.action} shelter ${this.shelterId} with reason: ${this.reason}`);
+    if (response.ok) {
+      // Handle success (e.g., update UI, display message)
+      console.log(`Shelter ${this.action}ed successfully!`);
+      // ... you might want to remove the row from the table or reload the page
+    } else {
+      // Handle error (e.g., display error message)
+      const data = await response.json();
+      console.error(`Failed to ${this.action} shelter:`, data.error);
+    }
+  } catch (error) {
+    console.error('Error during shelter verification:', error);
+  }
 
-            // Close the modal
-            this.open = false;
-        }
+  this.open = false; // Close the modal
+}
     </script>
 </body>
 </html>

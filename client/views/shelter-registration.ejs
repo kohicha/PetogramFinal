@@ -26,7 +26,7 @@
             <div class="max-w-2xl mx-auto">
                 <h1 class="text-3xl font-bold text-gray-900 mb-6">Shelter Registration</h1>
                 <div class="bg-white shadow-md rounded-lg p-6">
-                    <form action="/shelter-registration" method="POST" class="space-y-6">
+                    <form action="/shelter-registration" id="shelter-form" method="POST" class="space-y-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <label for="shelter_license" class="block text-sm font-medium text-gray-700">Shelter License</label>
@@ -39,10 +39,6 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label for="owner" class="block text-sm font-medium text-gray-700">Owner</label>
-                            <input type="text" id="owner" name="owner" required class="mt-1 focus:ring-brand focus:border-brand block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                        </div>
 
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Shelter Name</label>
@@ -105,4 +101,5 @@
         <%- include('partials/hot-topics') %>
     </div>
 </body>
+<script src="/js/shelter-register.js"></script>
 </html>

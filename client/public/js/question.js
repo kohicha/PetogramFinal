@@ -20,6 +20,7 @@ const form = document.getElementById('questionForm');
       if (response.ok) {
         // Handle success (e.g., redirect, display message)
         console.log('Question submitted successfully!');
+        window.location.href = "http://localhost:3000/"
       } else {
         // Handle error (e.g., display error message)
         console.error('Failed to submit question');

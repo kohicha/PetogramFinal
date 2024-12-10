@@ -14,47 +14,9 @@
 
         <!-- Favorites List -->
         <div class="space-y-4">
-            <% const favorites = [
-                {
-                    title: "How do I train my dog to say meow?",
-                    category: "CAT",
-                    author: {
-                        name: "Syd pogi",
-                        avatar: "https://api.dicebear.com/6.x/avataaars/svg?seed=Felix",
-                        isVerified: true
-                    },
-                    stats: {
-                        votes: "1.2k",
-                        answers: 900,
-                        views: "5.2k"
-                    },
-                    timeAgo: "2 years ago"
-                },
-                {
-                    title: "Do penguins ever trip over their own feet, or are they just secretly professional models with a perfect waddle?",
-                    category: "CAT",
-                    author: {
-                        name: "Syd pogi",
-                        avatar: "https://api.dicebear.com/6.x/avataaars/svg?seed=Felix",
-                        isVerified: true
-                    },
-                    stats: {
-                        votes: "1.2k",
-                        answers: 900,
-                        views: "5.2k"
-                    },
-                    timeAgo: "2 years ago"
-                }
-            ] %>
-
             <% favorites.forEach(post => { %>
             <div class="bg-white rounded-xl border border-gray-200 p-6">
                 <div class="space-y-4">
-                    <!-- Category Tag -->
-                    <span class="inline-block px-3 py-1 text-xs text-gray-600 bg-gray-100 rounded-full">
-                        <%= post.category %>
-                    </span>
-
                     <!-- Question Title -->
                     <h2 class="text-xl font-semibold hover:text-orange-500 cursor-pointer">
                         <%= post.title %>
@@ -64,18 +26,21 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <img 
-                                src="<%= post.author.avatar %>" 
-                                alt="<%= post.author.name %>" 
+                                src="https://api.dicebear.com/6.x/avataaars/svg?seed=Felix" 
+                                alt="<%= post.username %>" 
                                 class="w-8 h-8 rounded-full"
                             >
                             <div class="flex items-center gap-2">
-                                <span class="font-medium"><%= post.author.name %></span>
-                                <% if (post.author.isVerified) { %>
+                                <span class="font-medium"><%= post.username %></span>
+                        <%if(post.role == 'expert'){%>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg><%}%>
+                                <% if (post.author) { %>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                 </svg>
                                 <% } %>
-                                <span class="text-gray-500">• asked <%= post.timeAgo %></span>
                             </div>
                         </div>
                         <div class="flex items-center gap-6 text-sm">
@@ -83,20 +48,20 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                                 </svg>
-                                <%= post.stats.votes %> Votes
+                                 Votes
                             </div>
                             <div class="flex items-center gap-2 text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd" />
                                 </svg>
-                                <%= post.stats.answers %> Answers
+                                Answers
                             </div>
                             <div class="flex items-center gap-2 text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                 </svg>
-                                <%= post.stats.views %> Views
+                                 Views
                             </div>
                         </div>
                     </div>
