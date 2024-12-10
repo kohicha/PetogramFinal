@@ -15,6 +15,7 @@ savePostButton.addEventListener('click', async (event) => {
 
     if (response.ok) {
       console.log('Post added to favorites!');
+      window.location.href = '/favorites'; 
     } else {
       const data = await response.json();
       console.error('Failed to add post to favorites:', data.error);

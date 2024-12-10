@@ -20,6 +20,7 @@ form.addEventListener('submit', (event) => {
     if (response.ok) {
       // Handle success (e.g., redirect, display message)
       console.log('Shelter registration submitted successfully!');
+      window.location.href = '/shelters'; 
     } else {
       // Handle error (e.g., display error message)
       console.error('Failed to submit shelter registration');

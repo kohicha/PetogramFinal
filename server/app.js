@@ -144,7 +144,7 @@ app.get('/profile/settings', ensureAuthenticated,async (req, res) => {
 })
 
 
-app.get('/admin', async (req, res) => {
+app.get('/admin', ensureAuthenticated, checkRole(['administrator', 'superuser']),async (req, res) => {
   try {
     const getUsers = await fetch('http://localhost:3000/api/users')
     const users = await getUsers.json()
