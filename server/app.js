@@ -131,8 +131,16 @@ app.get('/community', (req, res) => {
   res.render('community', { page: 'community' })
 })
 
-app.get('/profile/settings', ensureAuthenticated,(req, res) => {
-  res.render('profile-settings', { page: 'settings' })
+app.get('/profile/settings', ensureAuthenticated,async (req, res) => {
+  try{
+    const user_id = req.user.user_id
+    const getUser = await fetch(`http://localhost:3000/api/users/${user_id}`);
+    const user = await getUser.json()
+    console.log(user)
+  res.render('profile-settings', { page: 'settings', user })
+  }catch (error){
+    console.log(error)
+  }
 })
 
 

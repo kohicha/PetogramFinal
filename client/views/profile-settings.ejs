@@ -20,7 +20,7 @@
                     </label>
                     <input 
                         type="text" 
-                        value="Yensyd Francisco"
+                        value="<%= user.first_name%> <%=user.last_name%>"
                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                 </div>
@@ -31,7 +31,7 @@
                     </label>
                     <input 
                         type="text" 
-                        value="Syd Pogi"
+                        value="<%= user.username%>"
                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                 </div>
@@ -42,7 +42,7 @@
                     </label>
                     <input 
                         type="text" 
-                        value="Caloocan, Philippines"
+                        value="<%= user.location%>"
                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                 </div>
@@ -54,7 +54,7 @@
                     <textarea 
                         rows="4"
                         class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    >Your friendly neighbourhood dog owner!</textarea>
+                    ><%= user.biography%></textarea>
                 </div>
 
                 <div>
@@ -64,29 +64,6 @@
                             <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </a>
-                </div>
-
-                <div>
-                    <label class="block font-medium mb-4">
-                        Choose your background <span class="text-red-500">*</span>
-                    </label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <% for(let i = 0; i < 4; i++) { %>
-                        <label class="relative block cursor-pointer">
-                            <input type="radio" name="background" class="peer sr-only">
-                            <img 
-                                src="/placeholder.svg?height=200&width=400" 
-                                alt="Background Option" 
-                                class="w-full aspect-video rounded-lg border-2 border-transparent peer-checked:border-orange-500"
-                            >
-                            <div class="absolute inset-0 hidden items-center justify-center bg-orange-500/10 rounded-lg peer-checked:flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </label>
-                        <% } %>
-                    </div>
                 </div>
 
                 <button type="submit" class="px-6 py-3 bg-orange-500 text-white font-medium rounded-lg hover:bg-orange-600">
